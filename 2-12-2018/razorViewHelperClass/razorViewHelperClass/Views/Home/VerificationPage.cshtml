@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "VerificationPage";
+}
+
+<h2>Verification Page</h2>
+@if (ViewBag.error != null)
+{
+    <h1 class="text-danger">@ViewBag.error</h1>
+}
+else
+{
+    <img src="~/Content/@ViewBag.imageUrl" class="img-rounded" width="200px" />
+
+    <h3>@ViewBag.message</h3>
+}
+

@@ -1,0 +1,136 @@
+﻿@model razorViewHelperClass.Models.UserModel
+
+@{
+    ViewBag.Title = "SingUp";
+}
+
+<h2>Sing Up</h2>
+
+@using (Html.BeginForm("SingUp", "Home", FormMethod.Post, htmlAttributes: new { enctype = "multipart/form-data" }))
+{
+
+    <table class="table table-striped">
+        <tr>
+            <td colspan="4">
+                <input type="file" name="postedImage" id="postedImage" class="form-control" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter User Email Id:
+            </td>
+            <td class="" colspan="3">
+                @Html.TextBoxFor(model => model.EmailId, htmlAttributes: new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter User Name:
+            </td>
+            <td colspan="3">
+                @Html.TextBoxFor(model => model.UserName, htmlAttributes: new { @class = "form-control" })
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                Enter User Password:
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+            <td>
+                Confirm Password:
+            </td>
+            <td>
+                @Html.PasswordFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Enter User Mobile Number:
+            </td>
+            <td>
+                @Html.TextBoxFor(model => model.Mobile, htmlAttributes: new { @class = "form-control" })
+            </td>
+            <td>
+                Gender:
+            </td>
+            <td>
+                @Html.RadioButtonFor(model => model.Gender, "Male") Male
+                @Html.RadioButtonFor(model => model.Gender, "Female") Female
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <table class="table table-striped">
+                    <tr>
+                        <td>Country</td>
+                        <td>
+                            @Html.DropDownListFor(model => model.CountryName,
+
+         new List<SelectListItem>
+             () {
+
+                                new SelectListItem(){ Text="India",Value="IN"},
+                                new SelectListItem(){ Text="USA",Value="USA"}
+
+             }
+             , "Select Country"
+             , htmlAttributes: new { @class = "form-control" }
+             )
+                        </td>
+                        <td>State</td>
+                        <td>
+                            @Html.DropDownListFor(model => model.StateName,
+        null
+         , "Select State"
+         , htmlAttributes: new { @class = "form-control" }
+        )
+                        </td>
+                        <td>Country</td>
+                        <td>
+                            @Html.DropDownListFor(model => model.CityName,
+
+         null
+         , "Select City"
+         , htmlAttributes: new { @class = "form-control" }
+        )
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td class="">
+                Address
+            </td>
+            <td colspan="3">
+                @Html.TextAreaFor(model => model.Address, htmlAttributes: new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.CheckBoxFor(model => model.Subscribe) Subscribe for news events
+            </td>
+            <td colspan="3">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </td>
+        </tr>
+    </table>
+}
+
+@if (ViewBag.error != null)
+{
+    <div class="alert alert-danger">
+        @ViewBag.error
+    </div>
+}
+else if (ViewBag.message != null)
+{
+    <div class="alert alert-success">
+        @ViewBag.message
+    </div>
+}
+
+
